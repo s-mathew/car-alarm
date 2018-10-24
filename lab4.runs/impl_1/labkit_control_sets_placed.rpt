@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date         : Wed Oct 24 18:51:57 2018
+| Date         : Wed Oct 24 19:15:21 2018
 | Host         : eecs-digital-14 running 64-bit Ubuntu 14.04.5 LTS
 | Command      : report_control_sets -verbose -file labkit_control_sets_placed.rpt
 | Design       : labkit
@@ -33,12 +33,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              53 |           29 |
+| No           | No                    | No                     |              53 |           31 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |              42 |           13 |
-| Yes          | No                    | No                     |              34 |           19 |
+| Yes          | No                    | No                     |              18 |           15 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             254 |           64 |
+| Yes          | Yes                   | No                     |             270 |           68 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -48,46 +48,46 @@ Table of Contents
 +--------------------------------+------------------------------------------+---------------------------+------------------+----------------+
 |          Clock Signal          |               Enable Signal              |      Set/Reset Signal     | Slice Load Count | Bel Load Count |
 +--------------------------------+------------------------------------------+---------------------------+------------------+----------------+
+|  clock_25mhz_BUFG              | sync/fuel_pump_power_reg                 |                           |                1 |              1 |
+|  clock_25mhz_BUFG              | sync/count_reg[19]_9                     |                           |                1 |              1 |
 |  clock_25mhz_BUFG              | sync/count_reg[19]                       |                           |                1 |              1 |
 |  clock_25mhz_BUFG              | sync/count_reg[19]_10                    |                           |                1 |              1 |
+|  clock_25mhz_BUFG              | sync/count_reg[19]_8                     |                           |                1 |              1 |
 |  clock_25mhz_BUFG              | sync/count_reg[19]_0                     |                           |                1 |              1 |
 |  clock_25mhz_BUFG              | sync/count_reg[19]_1                     |                           |                1 |              1 |
 |  clock_25mhz_BUFG              | sync/count_reg[19]_2                     |                           |                1 |              1 |
-|  clock_25mhz_BUFG              | sync/count_reg[19]_3                     |                           |                1 |              1 |
 |  clock_25mhz_BUFG              | atFSM/LED_0_input_reg                    |                           |                1 |              1 |
+|  clock_25mhz_BUFG              | sync/count_reg[19]_3                     |                           |                1 |              1 |
 |  clock_25mhz_BUFG              | sync/count_reg[19]_4                     |                           |                1 |              1 |
 |  clock_25mhz_BUFG              | sync/count_reg[19]_5                     |                           |                1 |              1 |
 |  clock_25mhz_BUFG              | sync/count_reg[19]_6                     |                           |                1 |              1 |
 |  clock_25mhz_BUFG              | sync/count_reg[19]_7                     |                           |                1 |              1 |
-|  clock_25mhz_BUFG              | sync/count_reg[19]_8                     |                           |                1 |              1 |
-|  clock_25mhz_BUFG              | sync/count_reg[19]_9                     |                           |                1 |              1 |
-|  clock_25mhz_BUFG              | sync/fuel_pump_power_reg                 |                           |                1 |              1 |
 |  atFSM/interval_reg[1]_i_2_n_0 |                                          |                           |                1 |              2 |
-|  CLK100MHZ_IBUF_BUFG           |                                          |                           |                1 |              2 |
 |  clock_25mhz_BUFG              |                                          | display/strobe[3]_i_1_n_0 |                1 |              2 |
-|  clock_25mhz_BUFG              |                                          | display/p_0_in[2]         |                2 |              4 |
-|  clock_25mhz_BUFG              | timer1/internal_counter[3]_i_1_n_0       |                           |                1 |              4 |
-|  clock_25mhz_BUFG              | sync/E[1]                                |                           |                1 |              4 |
+|  CLK100MHZ_IBUF_BUFG           |                                          |                           |                1 |              2 |
+|  clock_25mhz_BUFG              | timer1/internal_counter[3]_i_1_n_0       | sync/reset_sync           |                1 |              4 |
 |  clock_25mhz_BUFG              | sync/E[0]                                |                           |                1 |              4 |
-|  clock_25mhz_BUFG              | sync/parameters_reg[7]                   | tp/parameters[7]_i_1_n_0  |                1 |              4 |
-|  clock_25mhz_BUFG              | reprogram_debounce/E[0]                  |                           |                1 |              4 |
-|  clock_25mhz_BUFG              | reprogram_debounce/parameters_reg[3][0]  |                           |                1 |              4 |
+|  clock_25mhz_BUFG              | time_parameter_selector_1_debounce/E[0]  | sync/reset_sync           |                1 |              4 |
+|  clock_25mhz_BUFG              | time_parameter_selector_1_debounce/E[1]  | sync/reset_sync           |                1 |              4 |
+|  clock_25mhz_BUFG              |                                          | display/p_0_in[2]         |                2 |              4 |
+|  clock_25mhz_BUFG              | reprogram_debounce/E[0]                  | sync/reset_sync           |                1 |              4 |
+|  clock_25mhz_BUFG              | reprogram_debounce/E[1]                  | sync/reset_sync           |                1 |              4 |
 |  clock_25mhz_BUFG              | vga1/hreset                              | vga1/vcount0              |                3 |             10 |
 |  clock_25mhz_BUFG              |                                          | vga1/hreset               |                4 |             10 |
-|  clock_25mhz_BUFG              | time_parameter_selector_1_debounce/count | sync/count_reg[19]_6      |                5 |             20 |
+|  clock_25mhz_BUFG              | passenger_door_switch_debounce/count     | sync/count_reg[19]_2      |                5 |             20 |
 |  clock_25mhz_BUFG              | driver_door_switch_debounce/count        | sync/count_reg[19]_1      |                5 |             20 |
 |  clock_25mhz_BUFG              | brake_depressed_switch_debounce/count    | sync/count_reg[19]        |                5 |             20 |
 |  clock_25mhz_BUFG              | time_value_3_debounce/count              | sync/count_reg[19]_10     |                5 |             20 |
 |  clock_25mhz_BUFG              | hidden_switch_debounce/count             | sync/count_reg[19]_0      |                5 |             20 |
-|  clock_25mhz_BUFG              | passenger_door_switch_debounce/count     | sync/count_reg[19]_2      |                5 |             20 |
+|  clock_25mhz_BUFG              | time_value_0_debounce/count              | sync/count_reg[19]_7      |                5 |             20 |
 |  clock_25mhz_BUFG              | ignition_switch_debounce/count           | sync/count_reg[19]_3      |                5 |             20 |
 |  clock_25mhz_BUFG              | reprogram_debounce/count                 | sync/count_reg[19]_4      |                5 |             20 |
+|  clock_25mhz_BUFG              | time_parameter_selector_1_debounce/count | sync/count_reg[19]_6      |                5 |             20 |
+|  clock_25mhz_BUFG              | time_parameter_selector_0_debounce/count | sync/count_reg[19]_5      |                5 |             20 |
 |  clock_25mhz_BUFG              | time_value_1_debounce/count              | sync/count_reg[19]_8      |                5 |             20 |
 |  clock_25mhz_BUFG              | time_value_2_debounce/count              | sync/count_reg[19]_9      |                5 |             20 |
-|  clock_25mhz_BUFG              | time_value_0_debounce/count              | sync/count_reg[19]_7      |                5 |             20 |
-|  clock_25mhz_BUFG              | time_parameter_selector_0_debounce/count | sync/count_reg[19]_5      |                5 |             20 |
 |  clock_25mhz_BUFG              |                                          | atFSM/SR[0]               |                6 |             26 |
-|  clock_25mhz_BUFG              |                                          |                           |               27 |             49 |
+|  clock_25mhz_BUFG              |                                          |                           |               29 |             49 |
 +--------------------------------+------------------------------------------+---------------------------+------------------+----------------+
 
 

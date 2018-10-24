@@ -218,17 +218,17 @@ module vga(input vga_clock,
 endmodule
 
 module anti_theft_fsm(input expired, 
-                        input ignition_switch,
-                        input driver_door,
-                        input passenger_door,
-                        input reprogram,
-                        input clock_25mhz,
-                        input reset_sync,
-                        output reg [1:0] interval,
-                        output reg start_timer,
-                        output reg [1:0] status_indicator,
-                        output reg alarm,
-                        output [2:0] fsm_state);
+                    input ignition_switch,
+                    input driver_door,
+                    input passenger_door,
+                    input reprogram,
+                    input clock_25mhz,
+                    input reset_sync,
+                    output reg [1:0] interval,
+                    output reg start_timer,
+                    output reg [1:0] status_indicator,
+                    output reg alarm,
+                    output [2:0] fsm_state);
     parameter ARMED = 0;
     parameter TRIGGERED = 1;
     parameter SOUND_ALARM = 2;
@@ -498,9 +498,9 @@ module time_parameters(input [1:0] time_parameter_selector,
         begin
             if (reset_sync)
                 begin
-                     parameters <= 16'b0110100011111010;
+                    parameters <= 16'b0110100011111010;
                 end
-            if (reprogram)
+            else if (reprogram)
                 begin
                     case (time_parameter_selector)
                         T_ARM_DELAY:
@@ -558,7 +558,7 @@ module timer(input [3:0] value,
     
     initial begin
         expired = 0;
-        internal_counter = 0;
+        internal_counter = 0;  
     end
     
     always @(posedge clock_25mhz)  
@@ -566,9 +566,9 @@ module timer(input [3:0] value,
             expired <= 0;
             if (reset_sync)
                 begin
-                    internal_counter <= 0;
+                    internal_counter <= 0;  
                 end
-            if (start_timer)
+            else if (start_timer)
                 begin
                     internal_counter <= value;  
                 end

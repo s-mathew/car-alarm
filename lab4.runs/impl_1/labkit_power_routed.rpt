@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date             : Wed Oct 24 18:52:12 2018
+| Date             : Wed Oct 24 19:15:36 2018
 | Host             : eecs-digital-14 running 64-bit Ubuntu 14.04.5 LTS
 | Command          : report_power -file labkit_power_routed.rpt -pb labkit_power_summary_routed.pb -rpx labkit_power_routed.rpx
 | Design           : labkit
@@ -50,13 +50,13 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |     0.001 |      818 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      256 |     63400 |            0.40 |
+| Slice Logic    |     0.001 |      803 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      244 |     63400 |            0.38 |
 |   CARRY4       |    <0.001 |       70 |     15850 |            0.44 |
 |   Register     |    <0.001 |      383 |    126800 |            0.30 |
 |   BUFG         |    <0.001 |        1 |        32 |            3.13 |
 |   Others       |     0.000 |       46 |       --- |             --- |
-| Signals        |     0.001 |      686 |       --- |             --- |
+| Signals        |     0.002 |      680 |       --- |             --- |
 | I/O            |     0.009 |       46 |       210 |           21.90 |
 | Static Power   |     0.097 |          |           |                 |
 | Total          |     0.109 |          |           |                 |
