@@ -1,0 +1,625 @@
+
+*** Running vivado
+    with args -log labkit.vds -m64 -mode batch -messageDb vivado.pb -notrace -source labkit.tcl
+
+
+****** Vivado v2016.2 (64-bit)
+  **** SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+  **** IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+
+source labkit.tcl -notrace
+Command: synth_design -top labkit -part xc7a100tcsg324-3
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 4328 
+WARNING: [Synth 8-1849] concatenation with unsized literal; will interpret as 32 bits [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:137]
+WARNING: [Synth 8-1849] concatenation with unsized literal; will interpret as 32 bits [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:137]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1065.523 ; gain = 170.324 ; free physical = 2126 ; free virtual = 13531
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'labkit' [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:22]
+INFO: [Synth 8-638] synthesizing module 'clock_quarter_divider' [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:156]
+INFO: [Synth 8-256] done synthesizing module 'clock_quarter_divider' (1#1) [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:156]
+INFO: [Synth 8-638] synthesizing module 'display_8hex' [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/display_8hex.v:16]
+	Parameter bits bound to: 13 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'display_8hex' (2#1) [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/display_8hex.v:16]
+INFO: [Synth 8-638] synthesizing module 'synchronize' [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:465]
+	Parameter NSYNC bound to: 2 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'synchronize' (3#1) [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:465]
+INFO: [Synth 8-638] synthesizing module 'divider' [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:591]
+INFO: [Synth 8-256] done synthesizing module 'divider' (4#1) [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:591]
+INFO: [Synth 8-638] synthesizing module 'timer' [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:549]
+INFO: [Synth 8-256] done synthesizing module 'timer' (5#1) [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:549]
+INFO: [Synth 8-638] synthesizing module 'debounce' [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:438]
+	Parameter DELAY bound to: 1000000 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'debounce' (6#1) [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:438]
+INFO: [Synth 8-638] synthesizing module 'fuel_pump_fsm' [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:618]
+	Parameter FUEL_PUMP_OFF bound to: 0 - type: integer 
+	Parameter POWER_RESTORE_START bound to: 1 - type: integer 
+	Parameter POWER_RESTORE bound to: 2 - type: integer 
+	Parameter POWER_LATCH_ON bound to: 3 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'fuel_pump_fsm' (7#1) [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:618]
+INFO: [Synth 8-638] synthesizing module 'time_parameters' [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:477]
+	Parameter T_ARM_DELAY bound to: 0 - type: integer 
+	Parameter T_DRIVER_DELAY bound to: 1 - type: integer 
+	Parameter T_PASSENGER_DELAY bound to: 2 - type: integer 
+	Parameter T_ALARM_ON bound to: 3 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'time_parameters' (8#1) [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:477]
+INFO: [Synth 8-638] synthesizing module 'anti_theft_fsm' [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:220]
+	Parameter ARMED bound to: 0 - type: integer 
+	Parameter TRIGGERED bound to: 1 - type: integer 
+	Parameter SOUND_ALARM bound to: 2 - type: integer 
+	Parameter EXPIRING_ALARM bound to: 3 - type: integer 
+	Parameter DISARMED bound to: 4 - type: integer 
+	Parameter DISARMED_1 bound to: 5 - type: integer 
+	Parameter DISARMED_2 bound to: 6 - type: integer 
+	Parameter DISARMED_3 bound to: 7 - type: integer 
+	Parameter LIGHT_OFF bound to: 0 - type: integer 
+	Parameter BLINKING bound to: 1 - type: integer 
+	Parameter CONSTANTLY_ON bound to: 2 - type: integer 
+	Parameter T_ARM_DELAY bound to: 0 - type: integer 
+	Parameter T_DRIVER_DELAY bound to: 1 - type: integer 
+	Parameter T_PASSENGER_DELAY bound to: 2 - type: integer 
+	Parameter T_ALARM_ON bound to: 3 - type: integer 
+INFO: [Synth 8-226] default block is never used [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:263]
+INFO: [Synth 8-155] case statement is not full and has no default [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:401]
+INFO: [Synth 8-256] done synthesizing module 'anti_theft_fsm' (9#1) [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:220]
+INFO: [Synth 8-638] synthesizing module 'LED_0_status' [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:681]
+	Parameter LIGHT_OFF bound to: 0 - type: integer 
+	Parameter BLINKING bound to: 1 - type: integer 
+	Parameter CONSTANTLY_ON bound to: 2 - type: integer 
+	Parameter LED_BLINK_OFF bound to: 0 - type: integer 
+	Parameter LED_BLINK_ON bound to: 1 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:696]
+INFO: [Synth 8-256] done synthesizing module 'LED_0_status' (10#1) [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:681]
+INFO: [Synth 8-638] synthesizing module 'vga' [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:177]
+INFO: [Synth 8-256] done synthesizing module 'vga' (11#1) [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:177]
+WARNING: [Synth 8-3848] Net JA in module/entity labkit does not have driver. [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:29]
+WARNING: [Synth 8-3848] Net LED16_B in module/entity labkit does not have driver. [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:32]
+WARNING: [Synth 8-3848] Net LED16_G in module/entity labkit does not have driver. [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:32]
+WARNING: [Synth 8-3848] Net LED16_R in module/entity labkit does not have driver. [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:32]
+WARNING: [Synth 8-3848] Net LED17_B in module/entity labkit does not have driver. [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:33]
+WARNING: [Synth 8-3848] Net LED17_G in module/entity labkit does not have driver. [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:33]
+WARNING: [Synth 8-3848] Net LED17_R in module/entity labkit does not have driver. [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:33]
+INFO: [Synth 8-256] done synthesizing module 'labkit' (12#1) [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:22]
+WARNING: [Synth 8-3917] design labkit has port SEG[7] driven by constant 1
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[7]
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[6]
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[5]
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[4]
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[3]
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[2]
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[1]
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[0]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED16_B
+WARNING: [Synth 8-3331] design labkit has unconnected port LED16_G
+WARNING: [Synth 8-3331] design labkit has unconnected port LED16_R
+WARNING: [Synth 8-3331] design labkit has unconnected port LED17_B
+WARNING: [Synth 8-3331] design labkit has unconnected port LED17_G
+WARNING: [Synth 8-3331] design labkit has unconnected port LED17_R
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[15]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[14]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[13]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[12]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[11]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[10]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[9]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[8]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[7]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[6]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[5]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[4]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[3]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[2]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[14]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[13]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[12]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[11]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[10]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[9]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[8]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[6]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1092.781 ; gain = 197.582 ; free physical = 2098 ; free virtual = 13503
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1092.781 ; gain = 197.582 ; free physical = 2098 ; free virtual = 13503
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a100tcsg324-3
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/lab4.srcs/constrs_1/imports/constraints/Nexys4DDR_Master_lab4.xdc]
+Finished Parsing XDC File [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/lab4.srcs/constrs_1/imports/constraints/Nexys4DDR_Master_lab4.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/lab4.srcs/constrs_1/imports/constraints/Nexys4DDR_Master_lab4.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/labkit_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/labkit_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1464.242 ; gain = 0.000 ; free physical = 1907 ; free virtual = 13312
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1906 ; free virtual = 13311
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-3
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1906 ; free virtual = 13311
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1906 ; free virtual = 13311
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5546] ROM "one_hz_enable" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "expired" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "count" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "clean" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'fuel_pump_fsm'
+INFO: [Synth 8-5544] ROM "fuel_pump_power" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'anti_theft_fsm'
+INFO: [Synth 8-5544] ROM "status_indicator" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "alarm" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+           FUEL_PUMP_OFF |                               00 |                              000
+     POWER_RESTORE_START |                               01 |                              001
+           POWER_RESTORE |                               10 |                              010
+          POWER_LATCH_ON |                               11 |                              011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'fuel_pump_fsm'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                   ARMED |                              000 |                              000
+               TRIGGERED |                              001 |                              001
+             SOUND_ALARM |                              010 |                              010
+          EXPIRING_ALARM |                              011 |                              011
+                DISARMED |                              100 |                              100
+              DISARMED_1 |                              101 |                              101
+              DISARMED_2 |                              110 |                              110
+              DISARMED_3 |                              111 |                              111
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'anti_theft_fsm'
+WARNING: [Synth 8-327] inferring latch for variable 'interval_reg' [/afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/sources/labkit_lab4.v:406]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1897 ; free virtual = 13302
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     25 Bit       Adders := 1     
+	   2 Input     10 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 1     
+	   2 Input      1 Bit       Adders := 1     
++---Registers : 
+	               25 Bit    Registers := 1     
+	               16 Bit    Registers := 1     
+	               10 Bit    Registers := 2     
+	                8 Bit    Registers := 1     
+	                7 Bit    Registers := 1     
+	                4 Bit    Registers := 2     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 37    
++---Muxes : 
+	   2 Input     25 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 2     
+	   4 Input     16 Bit        Muxes := 2     
+	   8 Input      8 Bit        Muxes := 1     
+	  16 Input      7 Bit        Muxes := 8     
+	   2 Input      4 Bit        Muxes := 6     
+	   4 Input      4 Bit        Muxes := 1     
+	  24 Input      3 Bit        Muxes := 1     
+	   7 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   8 Input      2 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 104   
+	   4 Input      1 Bit        Muxes := 7     
+	   8 Input      1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module labkit 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 3     
+Module clock_quarter_divider 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      1 Bit       Adders := 1     
++---Registers : 
+	                1 Bit    Registers := 2     
+Module display_8hex 
+Detailed RTL Component Info : 
++---Registers : 
+	                8 Bit    Registers := 1     
+	                7 Bit    Registers := 1     
++---Muxes : 
+	   8 Input      8 Bit        Muxes := 1     
+	  16 Input      7 Bit        Muxes := 8     
+Module synchronize 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
+Module divider 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     25 Bit       Adders := 1     
++---Registers : 
+	               25 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     25 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+Module timer 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
++---Registers : 
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 4     
+Module debounce 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 6     
+Module fuel_pump_fsm 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   7 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 3     
+	   4 Input      1 Bit        Muxes := 3     
+Module time_parameters 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 2     
+	   4 Input     16 Bit        Muxes := 2     
+	   4 Input      4 Bit        Muxes := 1     
+Module anti_theft_fsm 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	  24 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   8 Input      2 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 23    
+	   8 Input      1 Bit        Muxes := 4     
+	   4 Input      1 Bit        Muxes := 1     
+Module LED_0_status 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   4 Input      1 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 1     
+Module vga 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 2     
++---Registers : 
+	               10 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1897 ; free virtual = 13302
+---------------------------------------------------------------------------------
+Start Cross Boundary Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5546] ROM "divider1/one_hz_enable" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "brake_depressed_switch_debounce/count" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "brake_depressed_switch_debounce/clean" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "hidden_switch_debounce/count" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "hidden_switch_debounce/clean" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "driver_door_switch_debounce/count" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "driver_door_switch_debounce/clean" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "passenger_door_switch_debounce/count" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "passenger_door_switch_debounce/clean" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "ignition_switch_debounce/count" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "ignition_switch_debounce/clean" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "reprogram_debounce/count" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "reprogram_debounce/clean" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "time_parameter_selector_0_debounce/count" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "time_parameter_selector_0_debounce/clean" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "time_parameter_selector_1_debounce/count" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "time_parameter_selector_1_debounce/clean" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "time_value_0_debounce/count" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "time_value_0_debounce/clean" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "time_value_1_debounce/count" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "time_value_1_debounce/clean" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "time_value_2_debounce/count" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "time_value_2_debounce/clean" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "time_value_3_debounce/count" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "time_value_3_debounce/clean" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-3917] design labkit has port SEG[7] driven by constant 1
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[7]
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[6]
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[5]
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[4]
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[3]
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[2]
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[1]
+WARNING: [Synth 8-3331] design labkit has unconnected port JA[0]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED16_B
+WARNING: [Synth 8-3331] design labkit has unconnected port LED16_G
+WARNING: [Synth 8-3331] design labkit has unconnected port LED16_R
+WARNING: [Synth 8-3331] design labkit has unconnected port LED17_B
+WARNING: [Synth 8-3331] design labkit has unconnected port LED17_G
+WARNING: [Synth 8-3331] design labkit has unconnected port LED17_R
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[15]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[14]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[13]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[12]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[11]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[10]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[9]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[8]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[7]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[6]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[5]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[4]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[3]
+WARNING: [Synth 8-3331] design labkit has unconnected port LED[2]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[14]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[13]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[12]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[11]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[10]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[9]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[8]
+WARNING: [Synth 8-3331] design labkit has unconnected port SW[6]
+---------------------------------------------------------------------------------
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1897 ; free virtual = 13302
+---------------------------------------------------------------------------------
+Finished Parallel Reinference  : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1897 ; free virtual = 13302
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1881 ; free virtual = 13286
+---------------------------------------------------------------------------------
+Finished Parallel Area Optimization  : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1881 ; free virtual = 13286
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1847 ; free virtual = 13252
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1847 ; free virtual = 13252
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1827 ; free virtual = 13232
+---------------------------------------------------------------------------------
+Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1827 ; free virtual = 13232
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1827 ; free virtual = 13232
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1827 ; free virtual = 13232
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1827 ; free virtual = 13232
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1827 ; free virtual = 13232
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1827 ; free virtual = 13232
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1827 ; free virtual = 13232
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1827 ; free virtual = 13232
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     2|
+|2     |CARRY4 |    70|
+|3     |LUT1   |   285|
+|4     |LUT2   |    33|
+|5     |LUT3   |    50|
+|6     |LUT4   |    84|
+|7     |LUT5   |    26|
+|8     |LUT6   |   105|
+|9     |FDRE   |   371|
+|10    |FDSE   |    10|
+|11    |LD     |     2|
+|12    |IBUF   |    14|
+|13    |OBUF   |    32|
+|14    |OBUFT  |    28|
++------+-------+------+
+
+Report Instance Areas: 
++------+-------------------------------------+----------------------+------+
+|      |Instance                             |Module                |Cells |
++------+-------------------------------------+----------------------+------+
+|1     |top                                  |                      |  1112|
+|2     |  atFSM                              |anti_theft_fsm        |    30|
+|3     |  brake_depressed_switch_debounce    |debounce              |    58|
+|4     |  clockgen                           |clock_quarter_divider |     4|
+|5     |  display                            |display_8hex          |    59|
+|6     |  divider1                           |divider               |    89|
+|7     |  driver_door_switch_debounce        |debounce_0            |    60|
+|8     |  fpFSM                              |fuel_pump_fsm         |     8|
+|9     |  hidden_switch_debounce             |debounce_1            |    58|
+|10    |  ignition_switch_debounce           |debounce_2            |    58|
+|11    |  passenger_door_switch_debounce     |debounce_3            |    58|
+|12    |  reprogram_debounce                 |debounce_4            |    62|
+|13    |  status_indictor_implement          |LED_0_status          |     2|
+|14    |  sync                               |synchronize           |    18|
+|15    |  time_parameter_selector_0_debounce |debounce_5            |    60|
+|16    |  time_parameter_selector_1_debounce |debounce_6            |    61|
+|17    |  time_value_0_debounce              |debounce_7            |    61|
+|18    |  time_value_1_debounce              |debounce_8            |    59|
+|19    |  time_value_2_debounce              |debounce_9            |    60|
+|20    |  time_value_3_debounce              |debounce_10           |    59|
+|21    |  timer1                             |timer                 |    23|
+|22    |  tp                                 |time_parameters       |    25|
+|23    |  vga1                               |vga                   |    64|
++------+-------------------------------------+----------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1827 ; free virtual = 13232
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 38 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1464.242 ; gain = 109.441 ; free physical = 1827 ; free virtual = 13232
+Synthesis Optimization Complete : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1464.242 ; gain = 569.043 ; free physical = 1827 ; free virtual = 13232
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 86 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 2 instances were transformed.
+  LD => LDCE: 2 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+85 Infos, 84 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1464.242 ; gain = 493.484 ; free physical = 1822 ; free virtual = 13227
+report_utilization: Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.10 . Memory (MB): peak = 1496.262 ; gain = 0.000 ; free physical = 1821 ; free virtual = 13226
+INFO: [Common 17-206] Exiting Vivado at Wed Oct 24 18:51:35 2018...
