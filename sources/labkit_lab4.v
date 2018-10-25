@@ -136,8 +136,8 @@ LED_0_status status_indictor_implement(.status_indicator(status_indicator), .clo
 wire sound;            
 siren_generator(.alarm(alarm), .clock_25mhz(clock_25mhz), .one_hz_enable(one_hz_enable), .sound(sound));
                                       
-assign data = {{0, fsm_state}, {0, fuel_fsm_state}, {2'b00, status_indicator}, {3'b000, sound}, {3'b000, alarm},
-8'h56, output_hex};
+assign data = {fsm_state, output_hex}; //{{0, fsm_state}, {0, fuel_fsm_state}, {2'b00, status_indicator}, {3'b000, sound}, {3'b000, alarm},
+//8'h56, output_hex};
 assign LED[0] = LED_0_input;
 assign LED[1] = fuel_pump_power;    
 assign JA[0] = sound;                                                                              
@@ -743,11 +743,12 @@ module siren_generator(input alarm,
     
     reg [15:0] counter;
     reg [15:0] count_till;
+    reg [15:0] count_till_half;
     parameter COUNT_TILL_440 = 56818;
     parameter COUNT_TILL_440_HALF = 28409;
     parameter COUNT_TILL_880 = 28409;
     parameter COUNT_TILL_880_HALF = 14204;
-    
+    reg [1:0] seconds_count;
     always @(posedge clock_25mhz)
         begin
             
@@ -756,15 +757,18 @@ module siren_generator(input alarm,
                     case (state)
                         LOW_FREQ:
                             begin
-                                if (counter == COUNT_TILL_440)
+                                if (counter == count_till)
                                     begin
                                         counter <= 0;
+                                        count_till <= count_till-20;
+                                        count_till_half <= count_till_half-10;
+
                                     end
                                 else
                                     begin
                                         counter <= counter + 1;
                                     end
-                                if (counter < COUNT_TILL_440_HALF)
+                                if (counter < count_till_half)
                                     begin
                                         sound <= 1;
                                     end
@@ -772,23 +776,27 @@ module siren_generator(input alarm,
                                     begin
                                         sound <= 0;
                                     end
-                                if (one_hz_enable)
+                                if (count_till <= 20)
                                     begin
                                         state <= HIGH_FREQ;
                                         counter <= 0;
+                                        count_till <= COUNT_TILL_880;
+                                        count_till_half <= COUNT_TILL_880_HALF;
                                     end
                             end
                         HIGH_FREQ:
                             begin
-                                if (counter == COUNT_TILL_880)
+                                if (counter == count_till)
                                     begin
                                         counter <= 0;
+                                        count_till <= count_till+20;
+                                        count_till_half <= count_till_half+10;
                                     end
                                 else
                                     begin
                                         counter <= counter + 1;
                                     end
-                                if (counter < COUNT_TILL_880_HALF)
+                                if (counter < count_till_half)
                                     begin
                                         sound <= 1;
                                     end
@@ -796,16 +804,20 @@ module siren_generator(input alarm,
                                     begin
                                         sound <= 0;
                                     end
-                                if (one_hz_enable)
+                                if (count_till >= COUNT_TILL_440)
                                     begin
                                         state <= LOW_FREQ;
                                         counter <= 0;
+                                        count_till <= COUNT_TILL_440;
+                                        count_till_half <= COUNT_TILL_440_HALF;
                                     end
                             end
                         default:
                             begin
                                 state <= LOW_FREQ;
                                 counter <= 0;
+                                count_till <= COUNT_TILL_440;
+                                count_till_half <= COUNT_TILL_440_HALF;
                             end
                     endcase
                     

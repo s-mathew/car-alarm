@@ -2,8 +2,8 @@
 # Vivado v2016.2 (64-bit)
 # SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
 # IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
-# Start of session at: Wed Oct 24 22:27:12 2018
-# Process ID: 1106
+# Start of session at: Wed Oct 24 23:07:24 2018
+# Process ID: 17422
 # Current directory: /afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/lab4.runs/impl_1
 # Command line: vivado -log labkit.vdi -applog -messageDb vivado.pb -mode batch -source labkit.tcl -notrace
 # Log file: /afs/athena.mit.edu/user/s/m/smathew/6.111work/labs/lab4/lab4.runs/impl_1/labkit.vdi
