@@ -132,11 +132,15 @@ anti_theft_fsm atFSM(.expired(expired), .ignition_switch(ignition_switch), .driv
              .status_indicator(status_indicator), .alarm(alarm), .fsm_state(fsm_state));                   
 
 LED_0_status status_indictor_implement(.status_indicator(status_indicator), .clock_25mhz(clock_25mhz),
-            .one_hz_enable(one_hz_enable), .LED_0_input(LED_0_input));             
-
-assign data = {{0, fsm_state}, {0, fuel_fsm_state}, {2'b00, status_indicator}, 16'h3456, output_hex};
+            .one_hz_enable(one_hz_enable), .LED_0_input(LED_0_input)); 
+wire sound;            
+siren_generator(.alarm(alarm), .clock_25mhz(clock_25mhz), .one_hz_enable(one_hz_enable), .sound(sound));
+                                      
+assign data = {{0, fsm_state}, {0, fuel_fsm_state}, {2'b00, status_indicator}, {3'b000, sound}, {3'b000, alarm},
+8'h56, output_hex};
 assign LED[0] = LED_0_input;
-assign LED[1] = fuel_pump_power;                                                                                  
+assign LED[1] = fuel_pump_power;    
+assign JA[0] = sound;                                                                              
 //////////////////////////////////////////////////////////////////////////////////
 // sample Verilog to generate color bars
     
@@ -727,3 +731,89 @@ module LED_0_status(input [1:0] status_indicator,
         end
                         
 endmodule                 
+
+module siren_generator(input alarm,
+                    input clock_25mhz,
+                    input one_hz_enable,
+                    output reg sound);
+
+    reg state;
+    parameter LOW_FREQ = 0;
+    parameter HIGH_FREQ = 1;
+    
+    reg [15:0] counter;
+    reg [15:0] count_till;
+    parameter COUNT_TILL_440 = 56818;
+    parameter COUNT_TILL_440_HALF = 28409;
+    parameter COUNT_TILL_880 = 28409;
+    parameter COUNT_TILL_880_HALF = 14204;
+    
+    always @(posedge clock_25mhz)
+        begin
+            
+            if (alarm)
+                begin
+                    case (state)
+                        LOW_FREQ:
+                            begin
+                                if (counter == COUNT_TILL_440)
+                                    begin
+                                        counter <= 0;
+                                    end
+                                else
+                                    begin
+                                        counter <= counter + 1;
+                                    end
+                                if (counter < COUNT_TILL_440_HALF)
+                                    begin
+                                        sound <= 1;
+                                    end
+                                else
+                                    begin
+                                        sound <= 0;
+                                    end
+                                if (one_hz_enable)
+                                    begin
+                                        state <= HIGH_FREQ;
+                                        counter <= 0;
+                                    end
+                            end
+                        HIGH_FREQ:
+                            begin
+                                if (counter == COUNT_TILL_880)
+                                    begin
+                                        counter <= 0;
+                                    end
+                                else
+                                    begin
+                                        counter <= counter + 1;
+                                    end
+                                if (counter < COUNT_TILL_880_HALF)
+                                    begin
+                                        sound <= 1;
+                                    end
+                                else
+                                    begin
+                                        sound <= 0;
+                                    end
+                                if (one_hz_enable)
+                                    begin
+                                        state <= LOW_FREQ;
+                                        counter <= 0;
+                                    end
+                            end
+                        default:
+                            begin
+                                state <= LOW_FREQ;
+                                counter <= 0;
+                            end
+                    endcase
+                    
+                end
+            else
+                begin
+                    sound <= 0;
+                end
+        end         
+                          
+endmodule

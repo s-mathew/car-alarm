@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date             : Wed Oct 24 19:15:36 2018
+| Date             : Wed Oct 24 22:27:01 2018
 | Host             : eecs-digital-14 running 64-bit Ubuntu 14.04.5 LTS
 | Command          : report_power -file labkit_power_routed.rpt -pb labkit_power_summary_routed.pb -rpx labkit_power_routed.rpx
 | Design           : labkit
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 0.109 |
-| Dynamic (W)              | 0.012 |
+| Total On-Chip Power (W)  | 0.107 |
+| Dynamic (W)              | 0.010 |
 | Device Static (W)        | 0.097 |
 | Effective TJA (C/W)      | 4.6   |
 | Max Ambient (C)          | 99.5  |
@@ -50,16 +50,16 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |     0.001 |      803 |       --- |             --- |
+| Slice Logic    |     0.001 |      818 |       --- |             --- |
 |   LUT as Logic |    <0.001 |      244 |     63400 |            0.38 |
-|   CARRY4       |    <0.001 |       70 |     15850 |            0.44 |
-|   Register     |    <0.001 |      383 |    126800 |            0.30 |
+|   CARRY4       |    <0.001 |       74 |     15850 |            0.47 |
+|   Register     |    <0.001 |      402 |    126800 |            0.32 |
 |   BUFG         |    <0.001 |        1 |        32 |            3.13 |
-|   Others       |     0.000 |       46 |       --- |             --- |
-| Signals        |     0.002 |      680 |       --- |             --- |
-| I/O            |     0.009 |       46 |       210 |           21.90 |
+|   Others       |     0.000 |       47 |       --- |             --- |
+| Signals        |     0.001 |      688 |       --- |             --- |
+| I/O            |     0.007 |       47 |       210 |           22.38 |
 | Static Power   |     0.097 |          |           |                 |
-| Total          |     0.109 |          |           |                 |
+| Total          |     0.107 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,7 +71,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Vccint    |       1.000 |     0.018 |       0.003 |      0.015 |
 | Vccaux    |       1.800 |     0.018 |       0.000 |      0.018 |
-| Vcco33    |       3.300 |     0.007 |       0.003 |      0.004 |
+| Vcco33    |       3.300 |     0.006 |       0.002 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -138,7 +138,7 @@ Table of Contents
 +--------------------------------------+-----------+
 | Name                                 | Power (W) |
 +--------------------------------------+-----------+
-| labkit                               |     0.012 |
+| labkit                               |     0.010 |
 |   atFSM                              |    <0.001 |
 |   brake_depressed_switch_debounce    |    <0.001 |
 |   clockgen                           |    <0.001 |
@@ -148,6 +148,7 @@ Table of Contents
 |   fpFSM                              |    <0.001 |
 |   hidden_switch_debounce             |    <0.001 |
 |   ignition_switch_debounce           |    <0.001 |
+|   nolabel_line137                    |    <0.001 |
 |   passenger_door_switch_debounce     |    <0.001 |
 |   reprogram_debounce                 |    <0.001 |
 |   status_indictor_implement          |    <0.001 |
