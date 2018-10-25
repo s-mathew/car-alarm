@@ -63,9 +63,10 @@ wire [3:0] time_value;
 wire fuel_pump_power;
 wire [1:0] interval;
 wire [15:0] parameters; //keeps track of all time parameter values
-wire alarm;
+wire alarm, sound;
 wire LED_0_input;
 wire [3:0] output_hex;
+wire [2:0] fsm_state;    
 //instantiate the submodules and wire their inputs and outputs
 //(use the labkit's clock_25mhz as the clock to all blocks)	
 synchronize sync (.clk(clock_25mhz), .in(SW[15]), .out(reset_sync));
@@ -75,23 +76,6 @@ divider divider1 (.clock_25mhz(clock_25mhz), .reset_sync(reset_sync||start_timer
 timer timer1(.value(value), .start_timer(start_timer), .clock_25mhz(clock_25mhz),
       .one_hz_enable(one_hz_enable), .reset_sync(reset_sync), .expired(expired), .output_hex(output_hex));
      
-     
-//  remove these lines and insert your lab here
-
-/*    assign LED = SW;     
-    assign JA[7:0] = 8'b0;
-    assign data = {28'h0123456, SW[3:0]};   // display 0123456 + SW
-    assign LED16_R = BTNL;                  // left button -> red led
-    assign LED16_G = BTNC;                  // center button -> green led
-    assign LED16_B = BTNR;                  // right button -> blue led
-    assign LED17_R = BTNL;
-    assign LED17_G = BTNC;
-    assign LED17_B = BTNR; */
-
-
-
-//
-//////////////////////////////////////////////////////////////////////////////////
 
 
 debounce brake_depressed_switch_debounce(.reset(reset_sync), .clock(clock_25mhz), .noisy(BTND), 
@@ -118,11 +102,10 @@ debounce time_value_2_debounce(.reset(reset_sync), .clock(clock_25mhz), .noisy(S
              .clean(time_value[2]));        
 debounce time_value_3_debounce(.reset(reset_sync), .clock(clock_25mhz), .noisy(SW[3]), 
              .clean(time_value[3]));     
-wire [2:0] fsm_state;            
-wire [2:0] fuel_fsm_state;
+
 fuel_pump_fsm fpFSM(.hidden_switch(hidden_switch), .brake_depressed_switch(brake_depressed_switch),
              .ignition_switch(ignition_switch), .clock_25mhz(clock_25mhz), .reset_sync(reset_sync),
-             .fuel_pump_power(fuel_pump_power), .fuel_fsm_state(fuel_fsm_state));
+             .fuel_pump_power(fuel_pump_power));
 time_parameters tp(.time_parameter_selector(time_parameter_selector), .time_value(time_value),
              .interval(interval), .clk(clock_25mhz), .reprogram(reprogram), .reset_sync(reset_sync), .value(value),
              .parameters(parameters));              
@@ -133,8 +116,8 @@ anti_theft_fsm atFSM(.expired(expired), .ignition_switch(ignition_switch), .driv
 
 LED_0_status status_indictor_implement(.status_indicator(status_indicator), .clock_25mhz(clock_25mhz),
             .one_hz_enable(one_hz_enable), .LED_0_input(LED_0_input)); 
-wire sound;            
-siren_generator(.alarm(alarm), .clock_25mhz(clock_25mhz), .one_hz_enable(one_hz_enable), .sound(sound));
+           
+siren_generator(.alarm(alarm), .clock_25mhz(clock_25mhz), .sound(sound));
                                       
 assign data = {fsm_state, output_hex}; //{{0, fsm_state}, {0, fuel_fsm_state}, {2'b00, status_indicator}, {3'b000, sound}, {3'b000, alarm},
 //8'h56, output_hex};
@@ -256,13 +239,12 @@ module anti_theft_fsm(input expired,
     
     always @(posedge clock_25mhz)
         begin
-            if (reprogram || reset_sync)
+            if (reprogram || reset_sync) //reset to ARMED state
                 begin
                     state <= ARMED;
                     start_timer <= 0;
                     alarm <= 0;
                     status_indicator <= BLINKING; 
-                    //interval <= 0;
                 end
             case (state)
                 ARMED:
@@ -278,13 +260,11 @@ module anti_theft_fsm(input expired,
                             begin
                                 state <= TRIGGERED;
                                 start_timer <= 1;
-                                //interval <= T_DRIVER_DELAY;
                             end
                         else if (passenger_door)
                             begin
                                 state <= TRIGGERED;
                                 start_timer <= 1;
-                                //interval <= T_PASSENGER_DELAY;
                             end
                     end
                     
@@ -312,11 +292,10 @@ module anti_theft_fsm(input expired,
                             begin
                                 state <= DISARMED;
                             end
-                        else if (~passenger_door && ~driver_door)
+                        else if (~passenger_door && ~driver_door) //if both not open
                             begin
                                 start_timer <= 1;
                                 state <= EXPIRING_ALARM;
-                                //interval <= T_ALARM_ON;
                             end
                     end
                 EXPIRING_ALARM:
@@ -332,7 +311,7 @@ module anti_theft_fsm(input expired,
                             begin
                                 state <= ARMED;
                             end
-                        else if (passenger_door || driver_door)
+                        else if (passenger_door || driver_door) //if one of them open
                             begin
                                 state <= SOUND_ALARM;
                             end
@@ -379,7 +358,6 @@ module anti_theft_fsm(input expired,
                         status_indicator <= LIGHT_OFF;
                         alarm <= 0;
                         start_timer <= 0;
-                        //interval <= T_ARM_DELAY;
                         if (driver_door || passenger_door)
                             begin
                                 state <= DISARMED;
@@ -389,7 +367,7 @@ module anti_theft_fsm(input expired,
                                 state <= ARMED;
                             end
                     end
-                 default:
+                 default: //default is ARMED state
                     begin
                         start_timer <= 0;
                         status_indicator <= BLINKING;
@@ -400,7 +378,7 @@ module anti_theft_fsm(input expired,
             endcase
         end
         
-        always @(*)
+        always @(*) //immediately set interval to correct time value
             begin
                 case (state)
                     ARMED:
@@ -494,7 +472,7 @@ module time_parameters(input [1:0] time_parameter_selector,
     
     initial 
         begin
-            parameters = 16'b0110100011111010;
+            parameters = 16'b0110100011111010; //{T_ARM_DELAY, T_DRIVER_DELAY, T_PASSENGER_DELAY, T_ALARM_ON}
         end
     
     
@@ -576,17 +554,15 @@ module timer(input [3:0] value,
                 begin
                     internal_counter <= value;  
                 end
-            else if (one_hz_enable && !expired)
+            if (internal_counter == 0)
                 begin
-                    if (internal_counter == 0)
-                        begin
-                            expired <= 1;
-                        end
-                    else
-                        begin
-                            internal_counter <= internal_counter - 1;    
-                        end
+                    expired <= 1;
                 end
+            else if (one_hz_enable && !expired) //every sec, decrement counter by 1
+                begin
+                    internal_counter <= internal_counter - 1;    
+                end
+                
         end  
     assign output_hex = internal_counter;
     
@@ -624,8 +600,7 @@ module fuel_pump_fsm(input hidden_switch,
                   input ignition_switch,
                   input clock_25mhz,
                   input reset_sync,
-                  output reg fuel_pump_power,
-                  output [2:0] fuel_fsm_state);
+                  output reg fuel_pump_power);
       
     parameter FUEL_PUMP_OFF = 0;
     parameter POWER_RESTORE_START = 1;
@@ -679,7 +654,6 @@ module fuel_pump_fsm(input hidden_switch,
             endcase
         end
         
-        assign fuel_fsm_state = state;
 endmodule
 
 module LED_0_status(input [1:0] status_indicator, 
@@ -734,20 +708,19 @@ endmodule
 
 module siren_generator(input alarm,
                     input clock_25mhz,
-                    input one_hz_enable,
                     output reg sound);
 
     reg state;
-    parameter LOW_FREQ = 0;
-    parameter HIGH_FREQ = 1;
+    parameter LOW_TO_HIGH = 0;
+    parameter HIGH_TO_LOW = 1;
     
     reg [15:0] counter;
     reg [15:0] count_till;
     reg [15:0] count_till_half;
-    parameter COUNT_TILL_440 = 56818;
-    parameter COUNT_TILL_440_HALF = 28409;
-    parameter COUNT_TILL_880 = 28409;
-    parameter COUNT_TILL_880_HALF = 14204;
+    parameter COUNT_TILL_440 = 56818; //number of clock ticks for a 440 hz frequency
+    parameter COUNT_TILL_440_HALF = 28409; //half of the above amount
+    parameter COUNT_TILL_880 = 28409; //number of clock ticks for a 880 hz frequency
+    parameter COUNT_TILL_880_HALF = 14204; //half of the above amount
     reg [1:0] seconds_count;
     always @(posedge clock_25mhz)
         begin
@@ -755,12 +728,12 @@ module siren_generator(input alarm,
             if (alarm)
                 begin
                     case (state)
-                        LOW_FREQ:
+                        LOW_TO_HIGH: //go from 440 hz to 880 hz
                             begin
                                 if (counter == count_till)
                                     begin
                                         counter <= 0;
-                                        count_till <= count_till-20;
+                                        count_till <= count_till-20; //decrement by 20 -- arbitrary value to make it go to 880 fast enough
                                         count_till_half <= count_till_half-10;
 
                                     end
@@ -768,23 +741,23 @@ module siren_generator(input alarm,
                                     begin
                                         counter <= counter + 1;
                                     end
-                                if (counter < count_till_half)
+                                if (counter < count_till_half) //first half of period, sound is on
                                     begin
                                         sound <= 1;
                                     end
-                                else
+                                else  //second half of period, sound is off
                                     begin
                                         sound <= 0;
                                     end
                                 if (count_till <= 20)
                                     begin
-                                        state <= HIGH_FREQ;
+                                        state <= HIGH_TO_LOW;
                                         counter <= 0;
                                         count_till <= COUNT_TILL_880;
                                         count_till_half <= COUNT_TILL_880_HALF;
                                     end
                             end
-                        HIGH_FREQ:
+                        HIGH_TO_LOW: //go from 880 hz to 440 hz
                             begin
                                 if (counter == count_till)
                                     begin
@@ -806,7 +779,7 @@ module siren_generator(input alarm,
                                     end
                                 if (count_till >= COUNT_TILL_440)
                                     begin
-                                        state <= LOW_FREQ;
+                                        state <= LOW_TO_HIGH;
                                         counter <= 0;
                                         count_till <= COUNT_TILL_440;
                                         count_till_half <= COUNT_TILL_440_HALF;
@@ -814,7 +787,7 @@ module siren_generator(input alarm,
                             end
                         default:
                             begin
-                                state <= LOW_FREQ;
+                                state <= LOW_TO_HIGH;
                                 counter <= 0;
                                 count_till <= COUNT_TILL_440;
                                 count_till_half <= COUNT_TILL_440_HALF;
